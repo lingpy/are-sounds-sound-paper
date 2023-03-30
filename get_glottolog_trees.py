@@ -25,7 +25,7 @@ with open(glotName, 'wb') as f:
 
 #%%
 
-with open('tree_glottolog_newick.txt') as f:
+with open(glotName) as f:
     raw = f.readlines()
 
 os.remove(glotName)
