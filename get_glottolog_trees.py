@@ -71,16 +71,14 @@ if not isExist:
 #%%
 
 for db in dbs:
-    print(db)
     d = pd.read_table(os.path.join('languages',db))
     glot_db = glot.copy()
     glot_db.prune([l for l in d.Glottocode if l in taxa])
-    g2l = dict(zip(d.Glottocode.values, d.Language.values))
     for l in glot_db.get_leaves():
-        l.name = g2l[l.name]
+        doculects = d.Language[d.Glottocode == l.name]
+        for dc in doculects:
+            l.add_child(name=dc)
     glot_db.write(
         outfile=os.path.join(tree_pth, db.split(".")[0]+"_glottolog.tre"), 
         format=9
         )
-
-# %%
