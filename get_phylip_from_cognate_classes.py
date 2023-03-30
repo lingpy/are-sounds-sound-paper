@@ -17,7 +17,9 @@ def get_char_matrix(db):
     for c in concepts:
         d_c = d[d.CONCEPT == c]
         c_matrices.append(pd.crosstab(d_c.DOCULECT, d_c.COGID))
-    return pd.concat(c_matrices, axis=1).fillna(-1).astype(int)
+    charMtx = pd.concat(c_matrices, axis=1).fillna(-1).astype(int)
+    charMtx[charMtx > 1] = 1
+    return charMtx
 
 #%%
 def cm_to_phy(charMtx):
