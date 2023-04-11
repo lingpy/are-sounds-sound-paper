@@ -34,7 +34,7 @@ trees = []
 
 for i, ln in enumerate(raw):
     ln = ln.strip()
-    ln = re.sub(r"\'[A-Z][^[]*\[", "[", ln)
+    ln = re.sub(r"\'[A-ZÄÖÜŌ][^[]*\[", "[", ln)
     ln = re.sub(r"\][^']*\'", "]", ln)
     ln = re.sub(r"\[|\]", "", ln)
     ln = ln.replace(":1", "")
@@ -60,10 +60,10 @@ taxa = glot.get_leaf_names()
 
 #%%
 
-dbs = os.listdir("languages")
+dbs = os.listdir("../languages")
 
 #%%
-tree_pth = "glottolog_trees"
+tree_pth = "../data/glottolog_trees"
 isExist = os.path.exists(tree_pth)
 
 if not isExist:
@@ -71,7 +71,7 @@ if not isExist:
 #%%
 
 for db in dbs:
-    d = pd.read_table(os.path.join('languages',db))
+    d = pd.read_table(os.path.join('../languages',db))
     glot_db = glot.copy()
     glot_db.prune([l for l in d.Glottocode if l in taxa])
     for l in glot_db.get_leaves():
@@ -82,3 +82,5 @@ for db in dbs:
         outfile=os.path.join(tree_pth, db.split(".")[0]+"_glottolog.tre"), 
         format=9
         )
+
+# %%
