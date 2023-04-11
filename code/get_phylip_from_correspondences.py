@@ -6,7 +6,7 @@ import os
 #%%
 
 def get_char_mtx(db):
-    d = pd.read_table("correspondences/"+db)
+    d = pd.read_table("../data/correspondences/"+db)
     languages = d.columns[3:-2]
 
     matrices = []
@@ -37,11 +37,11 @@ def cm_to_phy(charMtx):
     return phy
 #%%
 
-dbs = os.listdir("correspondences")
+dbs = os.listdir("../data/correspondences")
 
 
 # %%
-phy_pth = "correspondences_phylip"
+phy_pth = "../data/correspondences_phylip"
 isExist = os.path.exists(phy_pth)
 
 if not isExist:

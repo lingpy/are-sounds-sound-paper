@@ -5,12 +5,12 @@ import os
 
 #%%
 
-dbs = os.listdir("datasets")
+dbs = os.listdir("../datasets")
 
 #%%
 
 def get_char_matrix(db):
-    d = pd.read_table(os.path.join("datasets", db))
+    d = pd.read_table(os.path.join("../datasets", db))
     c_matrices = []
     concepts = d.CONCEPT.unique()
     c_matrices = []
@@ -32,7 +32,7 @@ def cm_to_phy(charMtx):
     return phy
 
 # %%
-phy_pth = "cognate_classes_phylip"
+phy_pth = "../data/cognate_classes_phylip"
 isExist = os.path.exists(phy_pth)
 
 if not isExist:
