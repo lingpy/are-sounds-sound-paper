@@ -3,7 +3,7 @@ Pkg.activate(".")
 Pkg.instantiate()
 
 ##
-
+    
 using CSV, DataFrames, Pipe
 
 ## vstat
@@ -33,13 +33,15 @@ for fn in vstat_files
     end
 end
 
+@info not_converged
+
 ##
 
-fn = not_converged[1]
-vdf = @pipe CSV.File(
-        fn,
-        delim="\t",
-        header=2,
-        missingstring="NA") |> 
-            DataFrame |>
-            dropmissing(_, :PSRF)
+# fn = not_converged[1]
+# vdf = @pipe CSV.File(
+#         fn,
+#         delim="\t",
+#         header=2,
+#         missingstring="NA") |> 
+#             DataFrame |>
+#             dropmissing(_, :PSRF)
